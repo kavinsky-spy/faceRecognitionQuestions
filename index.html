@@ -8,56 +8,51 @@
     <title>Document</title>
     <script defer src="face-api.min.js"></script>
     <script defer src="script.js"></script>
-    <style>
-        .video-container {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .center {
-            display: flex;
-            align-items: center;
-        }
-        
-        video {
-            outline: red 1px solid;
-        }
-        
-        .left {
-            position: absolute;
-            left: 60%;
-        }
-        
-        canvas {
-            position: absolute;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
 
-
-    <div class="center">
-        <aside>
+    <div class="content">
+        <div class="left">
             <ul>
                 <li>1</li>
                 <li>2</li>
                 <li>3</li>
                 <li>4</li>
             </ul>
-        </aside>
 
+        </div>
+
+        <div class="center">
+
+<div class="questionnarie">
+
+    <div class="question">
+        <div class="answer">
+            <ul class="nav-pills-menu l-pb-1">
+                <li><a href="">a</a></li>
+                <li><a href="">b</a></li>
+                <li><a href="">c</a></li>
+                <li><a href="">d</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+            
+        </div>
     </div>
 
-    <aside>
-        <div class="left">
-            <div id="video-container" class="video-container"><video id="video" width="720" height="560" autoplay muted></video></div>
-        </div>
-    </aside>
 
+    <div class="right-cam">
+        <aside>
+            <div id="video-container" class="video-container"><video id="video" width="280" height="210" autoplay muted>
+                </video>
+            </div>
+        </aside>
+    </div>
 
 </body>
 
