@@ -6,36 +6,12 @@
     align-items: center;
 }
 
-.center {
-    display: flex;
-    justify-content: center;
-}
-
 video {
     outline: red 1px solid;
 }
 
-.right-cam {
-    position: absolute;
-    left: 85%;
-
-    .video-container {
-        height: 0rem;
-    }
-}
-
-.left {
-    position: absolute;
-    right: 85%;
-}
-
 canvas {
     position: absolute;
-}
-
-.content {
-    display: flex;
-    justify-content: center;
 }
 
 
@@ -52,6 +28,7 @@ ul .nav-pills-menu .l-pb-1 {
 
 ul.nav-pills-menu {
     list-style: none;
+    padding-left: 0;
 }
 
 ul.nav-pills-menu li a {
@@ -67,3 +44,45 @@ ul.nav-pills-menu li a {
     font-weight: 400;
     border-radius: 25px;
 }
+
+.aside {
+    top: 9rem
+}
+
+/* 
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+*/
+
+.right-cam {
+    position: absolute;
+    left: 85%;
+}
+
+.right-cam .video-container {
+    height: 0rem;
+}
+
+/* 
+.left {
+    position: absolute;
+    right: 85%;
+}
+
+
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.questionnarie {
+    background-color: #FFF;
+
+} */
