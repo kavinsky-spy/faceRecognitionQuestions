@@ -30,6 +30,8 @@
                     'gray-dark': '#273444',
                     'gray': '#8492a6',
                     'gray-light': '#d3dce6',
+                    'beige-dark': '#ecb9b2',
+                    'beige-light': '#f5e2db',
                 },
                 fontFamily: {
                     sans: ['Graphik', 'sans-serif'],
@@ -49,12 +51,12 @@
     </script>
     </head>
 
-    <body>
+    <body class="bg-gradient-to-t from-55% from-[#ecb9b2] to-[#f5e2db]">
 
 
         <header class="header h-28">
         </header>
-        <main class="">
+        <main class="h-[62rem]">
             <section class="flex justify-center">
                 <div class="">
                     <picture class="">
@@ -67,27 +69,52 @@
 
             </section>
             <section class="h-56 grid grid-cols-3 gap-4 content-start">
-                <div class="bottom-80 relative">
-                    <ul>
-                        <li class="w-16">
-                            <img
-                                src="public/img/globe_geography_global_international_education_icon_141976.png"
-                                alt="globe icon">
-                        </li>
-                        <li class="w-16">
-                            <img
-                                src="public/img/power.png"
-                                alt="power math icon">
-                        </li>
-                        <li>3</li>
-                        <li>4</li>
-                    </ul>
+                <div class="bottom-80 relative p-16">
+                    <div class="w-20">
+                        <ul class="w-12 bg-white rounded-full">
+                            <li class="py-3">
+                                <a href="#">
+                                    <img
+                                        src="public/img/globe_geography_global_international_education_icon_141976.png"
+                                        alt="globe icon">
+                                </a>
+
+                            </li>
+                            <li class="py-3">
+                                <a href="#">
+                                    <img
+                                        src="public/img/blackboard.png"
+                                        alt="blackboard math icon">
+                                </a>
+
+                            </li>
+                            <li class="py-3">
+                                <a href="#">
+                                    <img
+                                        src="public/img/chemistry.png"
+                                        alt="chemistry flask">
+                                </a>
+                            </li>
+
+
+                            <li class="py-3">
+                                <a href="#">
+                                    <img
+                                        src="public/img/sports.png"
+                                        alt="sports balls">
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
 
                 <div class="pt-12 flex justify-center">
                     <div class="questionnarie">
 
                         <div class="question">
+
                             <div class="answer">
                                 <ul class="nav-pills-menu l-pb-1 ">
                                     <li><a href="">a</a></li>
@@ -103,7 +130,7 @@
 
 
                 </div>
-                <aside class="absolute bottom-80 right-20">
+                <aside class="absolute bottom-64 right-20">
                     <div class="">
                         <div id="video-container" class="video-container">
                             <!-- <video id="video" width="280" height="210"
