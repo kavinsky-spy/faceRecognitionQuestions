@@ -31,8 +31,9 @@ video.addEventListener('play', () => {
         if (detections[0].expressions["happy"] >= 0.99) {
             console.log("happy")
         }
+        if (detections[0].expressions["angry"] >= 0.99) {
+            console.log("angry")
+        }
 
     }, 100)
 })
-
-
