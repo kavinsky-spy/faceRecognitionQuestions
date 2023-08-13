@@ -61,10 +61,10 @@
 
         </header>
         <section
-            class="h-[42rem] m-auto w-fit">
+            class="user-form  h-[42rem] m-auto w-fit">
             <div
                 class="flex items-center  bg-gradient-to-t from-55% from-[#9ca3af] to-[#FEFEFE]">
-                <div class="pd">
+                <div id="enterDetails" class="px-12">
 
                     <h4>ID</h4>
                     <input id="enterID" type="text">
@@ -75,9 +75,13 @@
                     <h4>Age</h4>
                     <input id="enterAge" type="text">
                     <br><br>
+
+                    <button class="bg-blue-400" id="insert">INSERT</button>
+                    <button class="bg-yellow-300" id="update">UPDATE</button>
+                    <button class="bg-red-600" id="remove">REMOVE</button>
                 </div>
 
-                <div class="findDetails">
+                <div id="findDetails" class="px-12">
                     <h2>Find by ID</h2>
 
                     <h4>ID</h4>
@@ -85,11 +89,11 @@
                     <button class="rounded-full bg-blue-700 px-12" id="find">FIND</button>
 
                     <h3 id="findName" type="text"></h3>
-                    <h3 id="findName" type="text"></h3> <br> <br>
+                    <h3 id="findAge" type="text"></h3> <br> <br>
                 </div>
             </div>
         </section>
-        <main class="h-[62rem]">
+        <main class="main-question h-[62rem] hidden">
             <section class="flex justify-center">
                 <div class>
                     <picture class>
@@ -196,81 +200,7 @@
                 </div>
             </section>
 
-            <script type="module">
-                // Import the functions you need from the SDKs you need
-                import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-                import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-                // TODO: Add SDKs for Firebase products that you want to use
-                // https://firebase.google.com/docs/web/setup#available-libraries
-              
-                // Your web app's Firebase configuration
-                // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-                const firebaseConfig = {
-                  apiKey: "AIzaSyBx5RqK_LZGc5mojAaTyW3cnu1s0oUixos",
-                  authDomain: "facerecognitionquestions.firebaseapp.com",
-                  projectId: "facerecognitionquestions",
-                  storageBucket: "facerecognitionquestions.appspot.com",
-                  messagingSenderId: "867353338806",
-                  appId: "1:867353338806:web:ff41db740c396c259b5717",
-                  measurementId: "G-QV4X7104ZT"
-                };
-              
-                // Initialize Firebase
-                const app = initializeApp(firebaseConfig);
-                const analytics = getAnalytics(app);
-    
-    
-                import   {getDatabase, set, get, update, remove, ref, child } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-    
-                const db = getDatabase();
-    
-                var enterID = document.querySelector("#enterID");
-                var enterName = document.querySelector("#enterName");
-                var enterAge = document.querySelector("#enterAge");
-                var findID = document.querySelector("#findID");
-                var findName = document.querySelector("#findName");
-                var findAge = document.querySelector("#findAge");
-
-                var insertButton = document.querySelector("#insert");
-                var updateButton = document.querySelector("#update");
-                var removeButton = document.querySelector("#remove");
-                var findButton = document.querySelector("#find");
-
-                function InsertData() {
-                    set(ref(db, "People/" + enterID.value), {
-                        Name: enterName.value,
-                        ID: enterID.value,
-                        Age: enterAge.value
-                    })
-                    .then(()=> {
-                        alert("Added!");
-                    })
-                    .catch((error)=> {
-                        alert(error);
-                    })
-
-                }
-
-                function FindData() {
-                    
-                }
-
-                function UpdateData() {
-                    
-                }
-
-                function RemoveData() {
-                    
-                }
-
-                insertButton.addEventListener('click', InsertData);
-                findButton.addEventListener('click', FindData);
-                updateButton.addEventListener('click', UpdateData);
-                removeButton.addEventListener('click', RemoveData);
-
-
-    
-              </script>
+            <script type="module" src="src/firebase.js"></script>
 
         </body>
 

@@ -1,71 +1,88 @@
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBx5RqK_LZGc5mojAaTyW3cnu1s0oUixos",
+    authDomain: "facerecognitionquestions.firebaseapp.com",
+    projectId: "facerecognitionquestions",
+    storageBucket: "facerecognitionquestions.appspot.com",
+    messagingSenderId: "867353338806",
+    appId: "1:867353338806:web:ff41db740c396c259b5717",
+    measurementId: "G-QV4X7104ZT"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 
 
-// // Initialize Firebase with your credentials
-// firebase.initializeApp(firebaseConfig);
+  import { getDatabase, set, get, update, remove, ref, child } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
 
-// const db = firebase.firestore();
-// const crudForm = document.getElementById('crud-form');
-// const tableBody = document.getElementById('table-body');
+  const db = getDatabase();
 
-// // Function to display data in the table
-// function displayData(doc) {
-//     const tr = document.createElement('tr');
-//     tr.setAttribute('data-id', doc.id);
-//     tr.innerHTML = `
-//         <td>${doc.data().name}</td>
-//         <td>${doc.data().email}</td>
-//         <td>
-//             <button class="edit-btn">Edit</button>
-//             <button class="delete-btn">Delete</button>
-//         </td>
-//     `;
-//     tableBody.appendChild(tr);
+  var questionMain = document.querySelector(".main-question");
+  var userForm = document.querySelector(".user-form");
+  var enterID = document.querySelector("#enterID");
+  var enterName = document.querySelector("#enterName");
+  var enterAge = document.querySelector("#enterAge");
+  var findID = document.querySelector("#findID");
+  var findName = document.querySelector("#findName");
+  var findAge = document.querySelector("#findAge");
 
-//     // Edit and Delete button event listeners
-//     const editBtn = tr.querySelector('.edit-btn');
-//     const deleteBtn = tr.querySelector('.delete-btn');
-    
-//     editBtn.addEventListener('click', () => {
-//         // Handle edit logic here
-//         const id = tr.getAttribute('data-id');
-//         const name = doc.data().name;
-//         const email = doc.data().email;
-//         // Update the form with the selected data
-//         document.getElementById('name').value = name;
-//         document.getElementById('email').value = email;
-//         // Handle update logic when form is submitted
-//         crudForm.onsubmit = (e) => {
-//             e.preventDefault();
-//             db.collection('users').doc(id).update({
-//                 name: document.getElementById('name').value,
-//                 email: document.getElementById('email').value
-//             });
-//             // Clear the form
-//             crudForm.reset();
-//         };
-//     });
-    
-//     deleteBtn.addEventListener('click', () => {
-//         // Handle delete logic here
-//         const id = tr.getAttribute('data-id');
-//         db.collection('users').doc(id).delete();
-//         tr.remove();
-//     });
-// }
+  var insertButton = document.querySelector("#insert");
+  var updateButton = document.querySelector("#update");
+  var removeButton = document.querySelector("#remove");
+  var findButton = document.querySelector("#find");
 
-// // Fetch and display existing data
-// db.collection('users').get().then((snapshot) => {
-//     snapshot.docs.forEach((doc) => {
-//         displayData(doc);
-//     });
-// });
+  function InsertData() {
+      set(ref(db, "users/" + enterID.value), {
+          Name: enterName.value,
+          ID: enterID.value,
+          Age: enterAge.value
+      })
+      .then(()=> {
+        userForm.classList.add('hidden');
+        questionMain.classList.remove('hidden');
+          alert("Added!");
+      })
+      .catch((error)=> {
+          alert(error);
+      })
 
-// // Form submission event listener
-// crudForm.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     db.collection('users').add({
-//         name: crudForm.name.value,
-//         email: crudForm.email.value
-//     });
-//     crudForm.reset();
-// });
+  }
+
+  function FindData() {
+      const dbref = ref(db);
+
+      get(child(dbref, "users/" + findID.value))
+      .then((snapshot) => {
+          if (snapshot.exists()) {
+              findName.innerHTML = "Name: " + snapshot.val().Name;
+              findAge.innerHTML = "Age: " + snapshot.val().Age;
+          } else {
+              alert("No data found");
+          }
+      }).catch((error) => {
+          alert(error)
+      })
+      
+  }
+
+  function UpdateData() {
+      
+  }
+
+  function RemoveData() {
+      
+  }
+
+  insertButton.addEventListener('click', InsertData);
+  findButton.addEventListener('click', FindData);
+  updateButton.addEventListener('click', UpdateData);
+  removeButton.addEventListener('click', RemoveData);
+
