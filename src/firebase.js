@@ -59,25 +59,28 @@
   function FindData() {
       const dbref = ref(db);
 
-      get(child(dbref, "users/" + findID.value))
+      get(child(dbref, "questions/" + findID.value))
       .then((snapshot) => {
           if (snapshot.exists()) {
-              findName.innerHTML = "Name: " + snapshot.val().Name;
-              findAge.innerHTML = "Age: " + snapshot.val().Age;
+              findName.innerHTML = "Name: " + snapshot.val().Text;
+              
+              
+              let answers = snapshot.val().answer;
+              Object.keys(answers).forEach(key => {
+                if (answers[key] == true) {
+                    findAge.innerHTML = "Age: " + key;
+                    console.log(key, answers[key]);
+                }
+                
+              });
+            //   console.log(answers);
+
           } else {
               alert("No data found");
           }
       }).catch((error) => {
           alert(error)
       })
-      
-  }
-
-  function UpdateData() {
-      
-  }
-
-  function RemoveData() {
       
   }
 

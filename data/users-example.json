@@ -1,0 +1,76 @@
+{
+  "users" : [ 
+     {"name": "Alex Meraz",
+       "age" : 24,
+       "email" : "ameraz@email.com"
+     },
+     {"name":"Mohammed Rafi",
+       "age" : 21,
+       "email" : "mrafi@email.com"
+     },
+     {"name":"Raja Tamil",
+       "age" : 31,
+       "email" : "rtamil@email.com"
+     },
+     { "name":"Sundar Pichai",
+       "age" : 21,
+       "email" : "spichai@email.com"
+     }],
+     "questions" : [
+      {
+          "Text": "What is the largest mammal in the world?",
+          "answer": {
+              "African Elephant" : false,
+              "Blue Whale" : true,
+              "Giraffe" : false,
+              "Hippopotamus" : false
+          }
+      },
+      {
+          "Text": "Who wrote the play \"Romeo and Juliet\"?",
+          "answer": {
+              "Charles Dickens" : false,
+              "William Shakespeare" : true,
+              "Jane Austen" : false,
+              "Mark Twain" : false
+          }
+      },
+      {
+          "Text": "What is the chemical symbol for the element gold?",
+          "answer": {
+              "Go" : false,
+              "Gd" : false,
+              "Au" : true,
+              "Ag" : false
+          }
+      },
+      {
+          "Text": "Which country is known as the Land of the Rising Sun?",
+          "answer": {
+              "China" : false,
+              "South Korea" : false,
+              "Japan" : true,
+              "Thailand" : false
+          }
+      },
+      {
+          "Text": "Which famous scientist is known for the theory of relativity?",
+          "answer": {
+              "Isaac Newton" : false,
+              "Albert Einstein" : true,
+              "Galileo Galilei" : false,
+              "Stephen Hawking" : false
+          }
+      },
+      {
+          "Text": "What is the largest planet in our solar system?",
+          "answer": {
+              "Venus" : false,
+              "Mars" : false,
+              "Jupiter" : true,
+              "Saturn" : false
+          }
+      }
+      
+  ]
+}
