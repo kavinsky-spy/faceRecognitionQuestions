@@ -56,6 +56,29 @@
 
   }
 
+  function GetRightAnswers() {
+    const dbref = ref(db);
+    const rightAnswers;
+
+      get(child(dbref, "questions/"))
+      .then((snapshot) => {
+
+        if (snapshot.exists()) {
+
+            snapshot.forEach(function())
+
+
+        
+        
+
+        } else {
+              alert("No data found");
+          }
+      }).catch((error) => {
+          alert(error)
+      })
+  }
+
   function FindData() {
       const dbref = ref(db);
 
