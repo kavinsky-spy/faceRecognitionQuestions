@@ -35,5 +35,5 @@ video.addEventListener('play', () => {
             console.log("angry")
         }
 
-    }, 100)
+    }, 100, {once : true})
 })
