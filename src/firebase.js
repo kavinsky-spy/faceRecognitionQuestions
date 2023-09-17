@@ -58,14 +58,21 @@
 
   function GetRightAnswers() {
     const dbref = ref(db);
-    const rightAnswers;
 
       get(child(dbref, "questions/"))
       .then((snapshot) => {
 
         if (snapshot.exists()) {
+            let rightAnswers = [];
 
-            snapshot.forEach(function())
+            let answers = snapshot.val();
+            Object.keys(answers).forEach(key => {
+                rightAnswers.push(answers[key].answer);
+                // console.log(answers[key].answer);
+                
+            console.log(rightAnswers);
+                
+            })
 
 
         
@@ -108,7 +115,7 @@
   }
 
   insertButton.addEventListener('click', InsertData);
-  findButton.addEventListener('click', FindData);
+  findButton.addEventListener('click', GetRightAnswers);
   updateButton.addEventListener('click', UpdateData);
   removeButton.addEventListener('click', RemoveData);
 
