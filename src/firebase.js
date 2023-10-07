@@ -39,7 +39,7 @@
   var removeButton = document.querySelector("#remove");
   var findButton = document.querySelector("#find");
 
-  function InsertData() {
+  function insertData() {
       set(ref(db, "users/" + enterID.value), {
           Name: enterName.value,
           ID: enterID.value,
@@ -56,7 +56,7 @@
 
   }
 
-  function GetRightAnswers() {
+  function getRightAnswers() {
     const dbref = ref(db);
 
       get(child(dbref, "questions/"))
@@ -68,25 +68,31 @@
             let answers = snapshot.val();
             Object.keys(answers).forEach(key => {
                 rightAnswers.push(answers[key].answer);
-                // console.log(answers[key].answer);
-                
-            console.log(rightAnswers);
-                
-            })
+            });
 
+            // Returns just the right answers.
+            const trueValuesArray = [];
+            rightAnswers.forEach(obj => {
+                for (const key in obj) {
+                  if (obj[key] === true) {
+                    trueValuesArray.push(key);
+                  }
+                }
+              });
 
-        
-        
+            console.log(trueValuesArray);
+            return trueValuesArray;
 
         } else {
               alert("No data found");
           }
       }).catch((error) => {
           alert(error)
-      })
+      });
+      return false;
   }
 
-  function FindData() {
+  function findData() {
       const dbref = ref(db);
 
       get(child(dbref, "questions/" + findID.value))
@@ -101,9 +107,7 @@
                     findAge.innerHTML = "Age: " + key;
                     console.log(key, answers[key]);
                 }
-                
               });
-            //   console.log(answers);
 
           } else {
               alert("No data found");
@@ -114,8 +118,8 @@
       
   }
 
-  insertButton.addEventListener('click', InsertData);
-  findButton.addEventListener('click', GetRightAnswers);
+  insertButton.addEventListener('click', insertData);
+  findButton.addEventListener('click', getRightAnswers);
   updateButton.addEventListener('click', UpdateData);
   removeButton.addEventListener('click', RemoveData);
 
