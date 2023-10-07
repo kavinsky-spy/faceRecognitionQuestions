@@ -45,6 +45,7 @@ var insertButton = document.querySelector("#insert");
 var updateButton = document.querySelector("#update");
 var removeButton = document.querySelector("#remove");
 var findButton = document.querySelector("#find");
+// var answerSelected =
 
 function insertData() {
   set(ref(db, "users/" + enterID.value), {
@@ -102,6 +103,55 @@ function getRightAnswers() {
   return false;
 }
 
+/**
+ *
+ * @returns questions Object with Text of every question.
+ * It will return false if there is no answers found.
+ */
+function getAllQuestions() {
+  const dbref = ref(db);
+
+  get(child(dbref, "questions/"))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        let snapValues = snapshot.val();
+        const questions = [];
+        for (const question of snapValues) {
+          questions.push(question.Text);
+        }
+        return questions;
+      } else {
+        alert("No data found");
+      }
+    })
+    .catch((error) => {
+      alert(error);
+    });
+  return false;
+}
+
+function fillQuestions() {
+  const textObject = {
+    0: "What is the largest mammal in the world?",
+    1: 'Who wrote the play "Romeo and Juliet"?',
+    2: "What is the chemical symbol for the element gold?",
+    3: "Which country is known as the Land of the Rising Sun?",
+    4: "Which famous scientist is known for the theory of relativity?",
+    5: "What is the largest planet in our solar system?",
+  };
+
+  for (const key in textObject) {
+    if (textObject.hasOwnProperty(key)) {
+      const textValue = textObject[key];
+      const div = document.getElementById(`textValue${key}`);
+      if (div) {
+        div.textContent = textValue;
+      }
+    }
+  }
+  console.log(textValue);
+}
+
 function findData() {
   const dbref = ref(db);
 
@@ -127,6 +177,6 @@ function findData() {
 }
 
 insertButton.addEventListener("click", insertData);
-findButton.addEventListener("click", getRightAnswers);
+findButton.addEventListener("click", fillQuestions);
 updateButton.addEventListener("click", UpdateData);
 removeButton.addEventListener("click", RemoveData);
