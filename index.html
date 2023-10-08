@@ -55,13 +55,11 @@
     </script>
     </head>
 
-    <body class="bg-gradient-to-t from-55% from-[#FEFEFE] to-[#FEFEFE]">
+    <!-- <body class="bg-gradient-to-t from-55% from-[#FEFEFE] to-[#FEFEFE]"> -->
+    <body>
 
-        <header class="header h-28">
-
-        </header>
-        <section
-            class="user-form  h-[42rem] m-auto w-fit">
+        <!-- <header class="header h-28"></header> -->
+        <!-- <section class="user-form  h-[42rem] m-auto w-fit">
             <div
                 class="flex items-center  bg-gradient-to-t from-55% from-[#9ca3af] to-[#FEFEFE]">
                 <div id="enterDetails" class="px-12">
@@ -92,9 +90,9 @@
                     <h3 id="findAge" type="text"></h3> <br> <br>
                 </div>
             </div>
-        </section>
-        <main class="main-question h-[62rem]">
-            <section class="flex justify-center">
+        </section> -->
+        <!-- <main class="main-question h-[62rem]"> -->
+        <!-- <section class="flex justify-center">
                 <div class>
                     <picture class>
                         <img class="rounded-md"
@@ -104,62 +102,46 @@
                     </picture>
                 </div>
 
-            </section>
-            <section class="h-56 grid grid-cols-1 gap-4 content-start">
-                <div class="pt-14 flex justify-self-center max-w-[50%] ">
-                    <div id="textValue0"></div>
-                    <div id="textValue1"></div>
-                    <div id="textValue2"></div>
-                    <div id="textValue3"></div>
-                    <div id="textValue4"></div>
-                    <div id="textValue5"></div>
-                </div>
-                <div class="pt-12 flex justify-center">
+            </section> -->
+        <!-- <section class="h-56 grid grid-cols-1 gap-4 content-start"> -->
+        <div class="pt-14 flex justify-self-center max-w-[50%] ">
+            <div id="textValue0"></div>
+            <div id="textValue1"></div>
+            <div id="textValue2"></div>
+            <div id="textValue3"></div>
+            <div id="textValue4"></div>
+            <div id="textValue5"></div>
+        </div>
+        <div class="pt-12 flex justify-center">
 
-                    <div class="questionnarie">
+            <div class="questionnarie">
 
-                        <div class="question">
+                <div class="question">
 
-                            <div class="answer">
-                                <ul class="nav-pills-menu l-pb-1 ">
-                                    <li><a href>A) Lorem ipsum, dolor sit
-                                            amet consectetur adipisicing elit.
-                                            Cumque, eum laborum! Sint
-                                            dignissimos</a></li>
-                                    <li><a href>B) Lorem ipsum, dolor sit
-                                            amet consectetur adipisicing elit.
-                                            Cumque, eum laborum! Sint
-                                            dignissimos</a></li>
-                                    <li><a href>C) Lorem ipsum, dolor sit
-                                            amet consectetur adipisicing elit.
-                                            Cumque, eum laborum! Sint
-                                            dignissimos</a></li>
-                                    <li><a href>D) Lorem ipsum, dolor sit
-                                            amet consectetur adipisicing elit.
-                                            Cumque, eum laborum! Sint
-                                            dignissimos</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="answer">
+                        <ul class="nav-pills-menu l-pb-1 ">
+                        </ul>
                     </div>
-
                 </div>
-                <aside class="absolute bottom-64 right-20">
-                    <div class>
-                        <div id="video-container" class="video-container
+            </div>
+
+        </div>
+        <aside class="absolute bottom-64 right-20">
+            <div class>
+                <div id="video-container" class="video-container
                             rounded-md">
-                            <video id="video" width="460" height="340"
-                                autoplay muted>
-                            </video>
-                            <!-- <img
+                    <video id="video" width="460" height="340"
+                        autoplay muted>
+                    </video>
+                    <!-- <img
                                 class="rounded-md"
                                 src="public/img/680d7388da2fbd08c09a0188ccd88f25.jpg"
                                 width="280" height="210" alt> -->
-                        </div>
-                    </div>
-                </aside>
-            </section>
-            <section class="bottom-[50rem] relative p-16">
+                </div>
+            </div>
+        </aside>
+        <!-- </section> -->
+        <!-- <section class="bottom-[50rem] relative p-16">
                 <div class>
                     <div class="w-20">
                         <ul class="w-16 bg-[#1C1C1C] rounded-full">
@@ -200,10 +182,25 @@
                     </div>
 
                 </div>
-            </section>
+            </section> -->
 
-            <script type="module" src="src/firebase.js"></script>
+        <h2>QUIZ APP</h2>
+        <main>
+            <div class="content">
+                <span class="spnQtd"></span>
+                <span class="spnImg"></span>
+                <span class="question"></span>
+                <div class="answers"></div>
+            </div>
+            <div class="finish">
+                <span></span>
+                <button>Reiniciar</button>
+            </div>
+        </main>
 
-        </body>
+        <script type="module" src="src/questions.js"></script>
+        <script type="module" src="src/firebase.js"></script>
 
-    </html>
+    </body>
+
+</html>
