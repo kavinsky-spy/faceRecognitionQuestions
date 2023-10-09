@@ -176,7 +176,7 @@ function findData() {
     });
 }
 
-insertButton.addEventListener("click", insertData);
-findButton.addEventListener("click", fillQuestions);
-updateButton.addEventListener("click", UpdateData);
-removeButton.addEventListener("click", RemoveData);
+// insertButton.addEventListener("click", insertData);
+// findButton.addEventListener("click", fillQuestions);
+// updateButton.addEventListener("click", UpdateData);
+// removeButton.addEventListener("click", RemoveData);
