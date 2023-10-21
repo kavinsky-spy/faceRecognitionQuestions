@@ -1,58 +1,4 @@
-// const video = document.getElementById("video");
-
-// const once =
-//   (fn) =>
-//   (...args) => {
-//     if (!fn) return;
-//     fn(...args);
-//     fn = null;
-//   };
-
-// Promise.all([
-//   faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
-//   faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
-//   faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
-//   faceapi.nets.faceExpressionNet.loadFromUri("/models"),
-// ]).then(startVideo);
-
-// function startVideo() {
-//   navigator.getUserMedia(
-//     { video: {} },
-//     (stream) => (video.srcObject = stream),
-//     (err) => console.error(err)
-//   );
-// }
-
-// video.addEventListener("play", () => {
-//   const canvas = faceapi.createCanvasFromMedia(video);
-//   const element = document.getElementById("video-container");
-//   once(element.append(canvas));
-//   const displaySize = { width: video.width, height: video.height };
-//   faceapi.matchDimensions(canvas, displaySize);
-//   setInterval(
-//     async () => {
-//       const detections = await faceapi
-//         .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-//         .withFaceLandmarks()
-//         .withFaceExpressions();
-//       const resizedDetections = faceapi.resizeResults(detections, displaySize);
-//       canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-//       faceapi.draw.drawDetections(canvas, resizedDetections);
-//       faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-//       faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-//       // console.log(detections[0].expressions["happy"])
-//       if (detections[0].expressions["happy"] >= 0.99) {
-//         console.log("happy");
-//       }
-//       if (detections[0].expressions["angry"] >= 0.99) {
-//         console.log("angry");
-//       }
-//     },
-//     100,
-//     { once: true }
-//   );
-// });
-
+const video = document.getElementById("video");
 let questionStartTime;
 const questionTimes = [];
 const question = document.querySelector(".question");
@@ -63,6 +9,78 @@ const textFinish = document.querySelector(".finish span");
 const content = document.querySelector(".content");
 const contentFinish = document.querySelector(".finish");
 const btnRestart = document.querySelector(".finish button");
+const questionEmotions = [];
+const predominantEmotions = [];
+const emotionCounts = {};
+
+const once =
+  (fn) =>
+  (...args) => {
+    if (!fn) return;
+    fn(...args);
+    fn = null;
+  };
+
+Promise.all([
+  faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+  faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
+  faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
+  faceapi.nets.faceExpressionNet.loadFromUri("/models"),
+]).then(startVideo);
+
+function startVideo() {
+  navigator.getUserMedia(
+    { video: {} },
+    (stream) => (video.srcObject = stream),
+    (err) => console.error(err)
+  );
+}
+
+video.addEventListener("play", () => {
+  const canvas = faceapi.createCanvasFromMedia(video);
+  const element = document.getElementById("video-container");
+  once(element.append(canvas));
+  const displaySize = { width: video.width, height: video.height };
+  faceapi.matchDimensions(canvas, displaySize);
+  setInterval(
+    async () => {
+      const detections = await faceapi
+        .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+        .withFaceLandmarks()
+        .withFaceExpressions();
+
+      const resizedDetections = faceapi.resizeResults(detections, displaySize);
+      canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+
+      faceapi.draw.drawDetections(canvas, resizedDetections);
+      faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
+      faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
+
+      if (detections[0].expressions["happy"] >= 0.99) {
+        questionEmotions[currentIndex] = "happy";
+      } else if (detections[0].expressions["angry"] >= 0.99) {
+        questionEmotions[currentIndex] = "angry";
+      } else if (detections[0].expressions["disgusted"] >= 0.99) {
+        questionEmotions[currentIndex] = "disgusted";
+      } else if (detections[0].expressions["fearful"] >= 0.99) {
+        questionEmotions[currentIndex] = "fearful";
+      } else if (detections[0].expressions["sad"] >= 0.99) {
+        questionEmotions[currentIndex] = "sad";
+      } else if (detections[0].expressions["surprised"] >= 0.99) {
+        questionEmotions[currentIndex] = "surprised";
+      } else if (detections[0].expressions["neutral"] >= 0.99) {
+        questionEmotions[currentIndex] = "neutral";
+      }
+
+      // Add this code to exclude "neutral" if it's not predominant
+      if (emotionCounts["neutral"] > questionEmotions.length / 2) {
+        delete emotionCounts["neutral"];
+      }
+    },
+    100,
+    { once: true }
+  );
+});
 
 import questions from "./src/questions.js";
 
@@ -88,6 +106,16 @@ function nextQuestion(e) {
   const timeSpent = (currentTime - questionStartTime) / 1000; // Convert to seconds
   questionTimes.push(timeSpent);
 
+  // Determine the predominant emotion for the current question
+  questionEmotions.forEach((emotion) => {
+    emotionCounts[emotion] = (emotionCounts[emotion] || 0) + 1;
+  });
+  const predominantEmotion = Object.keys(emotionCounts).reduce((a, b) =>
+    emotionCounts[a] > emotionCounts[b] ? a : b
+  );
+
+  predominantEmotions.push(predominantEmotion);
+
   if (currentIndex < questions.length - 1) {
     currentIndex++;
     loadQuestion();
@@ -101,6 +129,7 @@ function finish() {
   content.style.display = "none";
   contentFinish.style.display = "flex";
   console.log(questionTimes);
+  console.log(predominantEmotions);
 }
 
 function loadQuestion() {
