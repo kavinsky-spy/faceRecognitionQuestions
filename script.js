@@ -1,58 +1,60 @@
-const video = document.getElementById("video");
+// const video = document.getElementById("video");
 
-const once =
-  (fn) =>
-  (...args) => {
-    if (!fn) return;
-    fn(...args);
-    fn = null;
-  };
+// const once =
+//   (fn) =>
+//   (...args) => {
+//     if (!fn) return;
+//     fn(...args);
+//     fn = null;
+//   };
 
-Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
-  faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
-  faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
-  faceapi.nets.faceExpressionNet.loadFromUri("/models"),
-]).then(startVideo);
+// Promise.all([
+//   faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+//   faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
+//   faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
+//   faceapi.nets.faceExpressionNet.loadFromUri("/models"),
+// ]).then(startVideo);
 
-function startVideo() {
-  navigator.getUserMedia(
-    { video: {} },
-    (stream) => (video.srcObject = stream),
-    (err) => console.error(err)
-  );
-}
+// function startVideo() {
+//   navigator.getUserMedia(
+//     { video: {} },
+//     (stream) => (video.srcObject = stream),
+//     (err) => console.error(err)
+//   );
+// }
 
-video.addEventListener("play", () => {
-  const canvas = faceapi.createCanvasFromMedia(video);
-  const element = document.getElementById("video-container");
-  once(element.append(canvas));
-  const displaySize = { width: video.width, height: video.height };
-  faceapi.matchDimensions(canvas, displaySize);
-  setInterval(
-    async () => {
-      const detections = await faceapi
-        .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-        .withFaceLandmarks()
-        .withFaceExpressions();
-      const resizedDetections = faceapi.resizeResults(detections, displaySize);
-      canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-      faceapi.draw.drawDetections(canvas, resizedDetections);
-      faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-      faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-      // console.log(detections[0].expressions["happy"])
-      if (detections[0].expressions["happy"] >= 0.99) {
-        console.log("happy");
-      }
-      if (detections[0].expressions["angry"] >= 0.99) {
-        console.log("angry");
-      }
-    },
-    100,
-    { once: true }
-  );
-});
+// video.addEventListener("play", () => {
+//   const canvas = faceapi.createCanvasFromMedia(video);
+//   const element = document.getElementById("video-container");
+//   once(element.append(canvas));
+//   const displaySize = { width: video.width, height: video.height };
+//   faceapi.matchDimensions(canvas, displaySize);
+//   setInterval(
+//     async () => {
+//       const detections = await faceapi
+//         .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+//         .withFaceLandmarks()
+//         .withFaceExpressions();
+//       const resizedDetections = faceapi.resizeResults(detections, displaySize);
+//       canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+//       faceapi.draw.drawDetections(canvas, resizedDetections);
+//       faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
+//       faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
+//       // console.log(detections[0].expressions["happy"])
+//       if (detections[0].expressions["happy"] >= 0.99) {
+//         console.log("happy");
+//       }
+//       if (detections[0].expressions["angry"] >= 0.99) {
+//         console.log("angry");
+//       }
+//     },
+//     100,
+//     { once: true }
+//   );
+// });
 
+let questionStartTime;
+const questionTimes = [];
 const question = document.querySelector(".question");
 const answers = document.querySelector(".answers");
 const spnQtd = document.querySelector(".spnQtd");
@@ -81,6 +83,11 @@ function nextQuestion(e) {
     questionsCorrect++;
   }
 
+  // Calculate and store the time spent on the current question
+  const currentTime = new Date();
+  const timeSpent = (currentTime - questionStartTime) / 1000; // Convert to seconds
+  questionTimes.push(timeSpent);
+
   if (currentIndex < questions.length - 1) {
     currentIndex++;
     loadQuestion();
@@ -93,11 +100,15 @@ function finish() {
   textFinish.innerHTML = `você acertou ${questionsCorrect} de ${questions.length}`;
   content.style.display = "none";
   contentFinish.style.display = "flex";
+  console.log(questionTimes);
 }
 
 function loadQuestion() {
   spnImg.innerHTML = "";
   spnQtd.innerHTML = `${currentIndex + 1}/${questions.length}`;
+
+  // Record the start time when a question is loaded
+  questionStartTime = new Date();
 
   const imgElement = document.createElement("img");
   const item = questions[currentIndex];
