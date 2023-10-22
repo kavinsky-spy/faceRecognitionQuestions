@@ -125,7 +125,21 @@ function nextQuestion(e) {
 }
 
 function finish() {
-  textFinish.innerHTML = `você acertou ${questionsCorrect} de ${questions.length}`;
+  textFinish.innerHTML = `vocÃŠ acertou ${questionsCorrect} de ${questions.length}`;
+
+
+   // Clear any previous content in the questionResults div
+   const questionResultsDiv = document.getElementById("questionResults");
+   questionResultsDiv.innerHTML = "";
+ 
+   // Iterate through the questions and display time spent and predominant emotion for each
+   for (let i = 0; i < questions.length; i++) {
+     const questionResult = document.createElement("div");
+     questionResult.innerHTML = `QuestÃĢo ${i + 1}: Tempo gasto - ${questionTimes[i]} segundos, EmoÃ§ÃĢo predominante - ${predominantEmotions[i]}`;
+     questionResultsDiv.appendChild(questionResult);
+   }
+
+
   content.style.display = "none";
   contentFinish.style.display = "flex";
   console.log(questionTimes);
