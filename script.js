@@ -1,3 +1,5 @@
+import questions from "./src/questions.js";
+
 const video = document.getElementById("video");
 let questionStartTime;
 const questionTimes = [];
@@ -11,7 +13,8 @@ const contentFinish = document.querySelector(".finish");
 const btnRestart = document.querySelector(".finish button");
 const questionEmotions = [];
 const predominantEmotions = [];
-const emotionCounts = {};
+let currentIndex = 0;
+let questionsCorrect = 0;
 
 const once =
   (fn) =>
@@ -56,20 +59,18 @@ video.addEventListener("play", () => {
       faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
       faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
 
-      if (detections[0].expressions["happy"] >= 0.99) {
+      if (detections[0].expressions["happy"] >= 0.25) {
         questionEmotions[currentIndex] = "happy";
-      } else if (detections[0].expressions["angry"] >= 0.99) {
+      } else if (detections[0].expressions["angry"] >= 0.25) {
         questionEmotions[currentIndex] = "angry";
-      } else if (detections[0].expressions["disgusted"] >= 0.99) {
+      } else if (detections[0].expressions["disgusted"] >= 0.25) {
         questionEmotions[currentIndex] = "disgusted";
-      } else if (detections[0].expressions["fearful"] >= 0.99) {
+      } else if (detections[0].expressions["fearful"] >= 0.25) {
         questionEmotions[currentIndex] = "fearful";
-      } else if (detections[0].expressions["sad"] >= 0.99) {
+      } else if (detections[0].expressions["sad"] >= 0.25) {
         questionEmotions[currentIndex] = "sad";
-      } else if (detections[0].expressions["surprised"] >= 0.99) {
+      } else if (detections[0].expressions["surprised"] >= 0.25) {
         questionEmotions[currentIndex] = "surprised";
-      } else if (detections[0].expressions["neutral"] >= 0.99) {
-        questionEmotions[currentIndex] = "neutral";
       }
 
       // Add this code to exclude "neutral" if it's not predominant
@@ -81,11 +82,6 @@ video.addEventListener("play", () => {
     { once: true }
   );
 });
-
-import questions from "./src/questions.js";
-
-let currentIndex = 0;
-let questionsCorrect = 0;
 
 btnRestart.onclick = () => {
   content.style.display = "flex";
@@ -107,9 +103,13 @@ function nextQuestion(e) {
   questionTimes.push(timeSpent);
 
   // Determine the predominant emotion for the current question
-  questionEmotions.forEach((emotion) => {
-    emotionCounts[emotion] = (emotionCounts[emotion] || 0) + 1;
+  const emotionCounts = {}; // Reset emotionCounts for each question
+  questionEmotions.forEach((emotion, index) => {
+    if (index <= currentIndex) {
+      emotionCounts[emotion] = (emotionCounts[emotion] || 0) + 1;
+    }
   });
+
   const predominantEmotion = Object.keys(emotionCounts).reduce((a, b) =>
     emotionCounts[a] > emotionCounts[b] ? a : b
   );
@@ -125,20 +125,20 @@ function nextQuestion(e) {
 }
 
 function finish() {
-  textFinish.innerHTML = `vocÃŠ acertou ${questionsCorrect} de ${questions.length}`;
+  textFinish.innerHTML = `você acertou ${questionsCorrect} de ${questions.length}`;
 
+  // Clear any previous content in the questionResults div
+  const questionResultsDiv = document.getElementById("questionResults");
+  questionResultsDiv.innerHTML = "";
 
-   // Clear any previous content in the questionResults div
-   const questionResultsDiv = document.getElementById("questionResults");
-   questionResultsDiv.innerHTML = "";
- 
-   // Iterate through the questions and display time spent and predominant emotion for each
-   for (let i = 0; i < questions.length; i++) {
-     const questionResult = document.createElement("div");
-     questionResult.innerHTML = `QuestÃĢo ${i + 1}: Tempo gasto - ${questionTimes[i]} segundos, EmoÃ§ÃĢo predominante - ${predominantEmotions[i]}`;
-     questionResultsDiv.appendChild(questionResult);
-   }
-
+  // Iterate through the questions and display time spent and predominant emotion for each
+  for (let i = 0; i < questions.length; i++) {
+    const questionResult = document.createElement("div");
+    questionResult.innerHTML = `Questão ${i + 1}: Tempo gasto - ${
+      questionTimes[i]
+    } segundos, Emoção predominante - ${predominantEmotions[i]}`;
+    questionResultsDiv.appendChild(questionResult);
+  }
 
   content.style.display = "none";
   contentFinish.style.display = "flex";
