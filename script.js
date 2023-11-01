@@ -59,17 +59,17 @@ video.addEventListener("play", () => {
       faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
       faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
 
-      if (detections[0].expressions["happy"] >= 0.35) {
+      if (detections[0].expressions["happy"] >= 0.25) {
         questionEmotions[currentIndex] = "happy";
-      } else if (detections[0].expressions["angry"] >= 0.35) {
+      } else if (detections[0].expressions["angry"] >= 0.25) {
         questionEmotions[currentIndex] = "angry";
-      } else if (detections[0].expressions["disgusted"] >= 0.35) {
+      } else if (detections[0].expressions["disgusted"] >= 0.25) {
         questionEmotions[currentIndex] = "disgusted";
-      } else if (detections[0].expressions["fearful"] >= 0.35) {
+      } else if (detections[0].expressions["fearful"] >= 0.25) {
         questionEmotions[currentIndex] = "fearful";
-      } else if (detections[0].expressions["sad"] >= 0.35) {
+      } else if (detections[0].expressions["sad"] >= 0.25) {
         questionEmotions[currentIndex] = "sad";
-      } else if (detections[0].expressions["surprised"] >= 0.35) {
+      } else if (detections[0].expressions["surprised"] >= 0.25) {
         questionEmotions[currentIndex] = "surprised";
       }
 
