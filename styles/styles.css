@@ -4,10 +4,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* visibility: hidden; */
 }
 
 video {
-    outline: red 1px solid;
+  outline: red 1px solid;
 }
 
 canvas {
@@ -122,4 +123,5 @@ span .spqnName {
 
 .finish button {
   background: #0072ff;
+  color: #fff;
 }
