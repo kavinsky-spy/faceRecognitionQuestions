@@ -6,11 +6,6 @@
     align-items: center;
     /* visibility: hidden; */
 }
-
-video {
-  outline: red 1px solid;
-}
-
 canvas {
     position: absolute;
 }
@@ -124,4 +119,11 @@ span .spqnName {
 .finish button {
   background: #0072ff;
   color: #fff;
+}
+
+
+.aside-video {
+  position: absolute;
+  bottom: 63%;
+  right: 8%;
 }
