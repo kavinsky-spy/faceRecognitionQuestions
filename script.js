@@ -1,8 +1,8 @@
 import questions from "./src/questions.js";
+import { insertData } from "./src/firebase.js";
 
 const video = document.getElementById("video");
 let questionStartTime;
-const questionTimes = [];
 const question = document.querySelector(".question");
 const answers = document.querySelector(".answers");
 const spnQtd = document.querySelector(".spnQtd");
@@ -12,9 +12,11 @@ const content = document.querySelector(".content");
 const contentFinish = document.querySelector(".finish");
 const btnRestart = document.querySelector(".finish button");
 const questionEmotions = [];
-const predominantEmotions = [];
 let currentIndex = 0;
 let questionsCorrect = 0;
+export let userAnswers = [];
+export let questionTimes = [];
+export let predominantEmotions = [];
 
 const once =
   (fn) =>
@@ -60,17 +62,17 @@ video.addEventListener("play", () => {
       faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
 
       if (detections[0].expressions["happy"] >= 0.25) {
-        questionEmotions[currentIndex] = "happy";
+        questionEmotions[currentIndex] = "Feliz";
       } else if (detections[0].expressions["angry"] >= 0.25) {
-        questionEmotions[currentIndex] = "angry";
+        questionEmotions[currentIndex] = "Irritado";
       } else if (detections[0].expressions["disgusted"] >= 0.25) {
-        questionEmotions[currentIndex] = "disgusted";
+        questionEmotions[currentIndex] = "Aborrecido";
       } else if (detections[0].expressions["fearful"] >= 0.25) {
-        questionEmotions[currentIndex] = "fearful";
+        questionEmotions[currentIndex] = "Assustado";
       } else if (detections[0].expressions["sad"] >= 0.25) {
-        questionEmotions[currentIndex] = "sad";
+        questionEmotions[currentIndex] = "Triste";
       } else if (detections[0].expressions["surprised"] >= 0.25) {
-        questionEmotions[currentIndex] = "surprised";
+        questionEmotions[currentIndex] = "Surpreso";
       }
 
       // Add this code to exclude "neutral" if it's not predominant
@@ -142,8 +144,7 @@ function finish() {
 
   content.style.display = "none";
   contentFinish.style.display = "flex";
-  console.log(questionTimes);
-  console.log(predominantEmotions);
+  insertData();
 }
 
 function loadQuestion() {

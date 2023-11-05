@@ -1,16 +1,16 @@
 export default [
   {
-    question: "What is the largest mammal in the world?",
+    question: "Qual é o maior mamifero do mundo?",
     answers: [
-      { option: "African Elephant", correct: false },
-      { option: "Blue Whale", correct: true },
-      { option: "Giraffe", correct: false },
-      { option: "Hippopotamus", correct: false },
+      { option: "Elefante Africano", correct: false },
+      { option: "Baleia Azul", correct: true },
+      { option: "Girafa", correct: false },
+      { option: "Hipopótamo", correct: false },
     ],
     img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
   },
   {
-    question: 'Who wrote the play "Romeo and Juliet"?',
+    question: 'Quem escreveu a peça "Romeu e Julieta"?',
     answers: [
       { option: "Charles Dickens", correct: false },
       { option: "William Shakespeare", correct: true },
@@ -20,7 +20,7 @@ export default [
     img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
   },
   {
-    question: "What is the chemical symbol for the element gold?",
+    question: "Qual o simbolo na tabela periódica do Ouro?",
     answers: [
       { option: "Go", correct: false },
       { option: "Gd", correct: false },
@@ -30,17 +30,18 @@ export default [
     img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
   },
   {
-    question: "Which country is known as the Land of the Rising Sun?",
+    question: "Qual pais é conhecido como Terra do sol nascente",
     answers: [
       { option: "China", correct: false },
-      { option: "South Korea", correct: false },
-      { option: "Japan", correct: true },
-      { option: "Thailand", correct: false },
+      { option: "Coreia do Sul", correct: false },
+      { option: "Japão", correct: true },
+      { option: "Tailândia", correct: false },
     ],
     img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
   },
   {
-    question: "Which famous scientist is known for the theory of relativity?",
+    question:
+      "Qual cientista famoso é responsavel pela teoria da relatividade?",
     answers: [
       { option: "Isaac Newton", correct: false },
       { option: "Albert Einstein", correct: true },
@@ -50,12 +51,12 @@ export default [
     img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
   },
   {
-    question: "What is the largest planet in our solar system?",
+    question: "Qual é o maior planeta do nosso sistema solar?",
     answers: [
       { option: "Venus", correct: false },
-      { option: "Mars", correct: false },
+      { option: "Marte", correct: false },
       { option: "Jupiter", correct: true },
-      { option: "Saturn", correct: false },
+      { option: "Saturno", correct: false },
     ],
     img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
   },

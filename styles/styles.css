@@ -14,49 +14,6 @@ canvas {
     position: absolute;
 }
 
-/* 
-ul .nav-pills-menu .l-pb-1 {
-    flex-direction: column;
-    list-style: none;
-    a {
-        background-color: #00698c;
-        color: #fff;
-        z-index: 1;
-        position: relative;
-    }   
-}
-
-ul.nav-pills-menu {
-    list-style: none;
-    padding-left: 0;
-}
-
-ul.nav-pills-menu li a {
-    text-align: left;
-    padding-left: 90px;
-    padding-right: 90px;
-    background-color: #1C1C1C;
-    color: #fff;
-    z-index: 1;
-    position: relative;
-    font-size: 18px;
-    line-height: 2.5em;
-    font-weight: 400;
-    border-radius: 25px;
-}
-
-.aside {
-    top: 9rem
-} */
-
-/* 
-.center {
-    display: flex;
-    justify-content: center;
-}
-
-*/
-
 .right-cam {
     position: absolute;
     left: 85%;
@@ -65,27 +22,6 @@ ul.nav-pills-menu li a {
 .right-cam .video-container {
     height: 0rem;
 }
-
-/* 
-.left {
-    position: absolute;
-    right: 85%;
-}
-
-
-
-.content {
-    display: flex;
-    justify-content: center;
-}
-
-
-
-
-.questionnarie {
-    background-color: #FFF;
-
-} */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 

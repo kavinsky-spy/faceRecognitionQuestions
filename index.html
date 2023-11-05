@@ -9,10 +9,11 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
         <script defer src="face-api.min.js"></script>
-        <!-- <link rel="stylesheet" href="styles/normalize.css"> -->
+
         <link rel="stylesheet" href="styles/styles.css">
         <script src="https://cdn.tailwindcss.com"></script>
-
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
     </head>
     <body>
         <aside class="absolute bottom-64 right-20">
@@ -29,7 +30,7 @@
                 </div>
             </div>
         </aside>
-        <h2>Face Emotion Quiz</h2>
+        <h2>Quiz</h2>
         <main>
             <div class="content">
                 <span class="spnQtd"></span>
@@ -45,8 +46,8 @@
             </div>
         </main>
 
-        <script type="module" src="/src/firebase.js"></script>
         <script type="module" src="script.js"></script>
+        <script type="module" src="/src/firebase.js"></script>
 
     </body>
 
