@@ -100,3 +100,26 @@ button {
 .spnImg img {
   width: 100%;
 }
+
+span .spqnName {
+   font-weight: 600;
+}
+
+.spqnName button {
+  width: auto;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 25px;
+  background: #0072ff;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background 250ms ease-in-out;
+}
+
+.finish button {
+  background: #0072ff;
+}

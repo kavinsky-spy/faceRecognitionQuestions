@@ -1,8 +1,7 @@
-import questions from "./src/questions.js";
-import { insertData } from "./src/firebase.js";
+import questions from "./questions.js";
+import { insertData } from "./firebase.js";
 
 const video = document.getElementById("video");
-let questionStartTime;
 const question = document.querySelector(".question");
 const answers = document.querySelector(".answers");
 const spnQtd = document.querySelector(".spnQtd");
@@ -13,12 +12,13 @@ const contentFinish = document.querySelector(".finish");
 const btnRestart = document.querySelector(".finish button");
 const questionEmotions = [];
 const contentlogin = document.querySelector(".content-login");
-export let name = document.getElementById("name-input").value;
-document.getElementById("buttonName").onclick = startQuiz;
+let questionStartTime;
 let currentIndex = 0;
 let questionsCorrect = 0;
+export let name = document.getElementById("name-input").value;
 export let questionTimes = [];
 export let predominantEmotions = [];
+document.getElementById("buttonName").onclick = startQuiz;
 
 const once =
   (fn) =>
@@ -88,13 +88,18 @@ video.addEventListener("play", () => {
 });
 
 btnRestart.onclick = () => {
-  content.style.display = "flex";
+  restartQuiz();
+};
+
+function restartQuiz() {
+  contentlogin.style.display = "flex";
   contentFinish.style.display = "none";
 
+  name = document.getElementById("name-input").value;
   currentIndex = 0;
   questionsCorrect = 0;
   loadQuestion();
-};
+}
 
 function startQuiz() {
   contentlogin.style.display = "none";
