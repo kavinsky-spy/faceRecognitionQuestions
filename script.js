@@ -12,9 +12,11 @@ const content = document.querySelector(".content");
 const contentFinish = document.querySelector(".finish");
 const btnRestart = document.querySelector(".finish button");
 const questionEmotions = [];
+const contentlogin = document.querySelector(".content-login");
+export let name = document.getElementById("name-input").value;
+document.getElementById("buttonName").onclick = startQuiz;
 let currentIndex = 0;
 let questionsCorrect = 0;
-export let userAnswers = [];
 export let questionTimes = [];
 export let predominantEmotions = [];
 
@@ -93,6 +95,13 @@ btnRestart.onclick = () => {
   questionsCorrect = 0;
   loadQuestion();
 };
+
+function startQuiz() {
+  contentlogin.style.display = "none";
+  content.style.display = "flex";
+  name = document.getElementById("name-input").value;
+  console.log(name);
+}
 
 function nextQuestion(e) {
   if (e.target.getAttribute("data-correct") === "true") {
