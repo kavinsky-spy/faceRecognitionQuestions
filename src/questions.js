@@ -7,7 +7,7 @@ export default [
       { option: "Girafa", correct: false },
       { option: "Hipopótamo", correct: false },
     ],
-    img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
+    img: "./public/img/mammals.jpg",
   },
   {
     question: 'Quem escreveu a peça "Romeu e Julieta"?',
