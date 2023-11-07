@@ -127,3 +127,12 @@ span .spqnName {
   bottom: 63%;
   right: 8%;
 }
+
+.warning {
+  left: 10%;
+  position: fixed;
+  top: 10%;
+  background: white;
+  border-radius: 3px;
+  padding: 1rem;
+}

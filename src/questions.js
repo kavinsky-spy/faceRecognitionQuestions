@@ -17,7 +17,7 @@ export default [
       { option: "Jane Austen", correct: false },
       { option: "Mark Twain", correct: false },
     ],
-    img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
+    img: './public/img/escritores.png',
   },
   {
     question: "Qual o simbolo na tabela periódica do Ouro?",
@@ -27,7 +27,7 @@ export default [
       { option: "Au", correct: true },
       { option: "Ag", correct: false },
     ],
-    img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
+    img: './public/img/ouro.png',
   },
   {
     question: "Qual pais é conhecido como Terra do sol nascente",
@@ -37,7 +37,7 @@ export default [
       { option: "Japão", correct: true },
       { option: "Tailândia", correct: false },
     ],
-    img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
+    img: './public/img/paises.png',
   },
   {
     question:
@@ -48,7 +48,7 @@ export default [
       { option: "Galileo Galilei", correct: false },
       { option: "Stephen Hawking", correct: false },
     ],
-    img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
+    img: './public/img/fisicos.png',
   },
   {
     question: "Qual é o maior planeta do nosso sistema solar?",
@@ -58,6 +58,6 @@ export default [
       { option: "Jupiter", correct: true },
       { option: "Saturno", correct: false },
     ],
-    img: `https://picsum.photos/id/${Math.floor(Math.random() * 111)}/800/600`,
+    img: './public/img/planetas.png',
   },
 ];

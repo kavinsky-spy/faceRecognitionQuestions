@@ -8,6 +8,7 @@ const spnQtd = document.querySelector(".spnQtd");
 const spnImg = document.querySelector(".spnImg");
 const textFinish = document.querySelector(".finish span");
 const content = document.querySelector(".content");
+const warningDiv = document.querySelector(".warning");
 const contentFinish = document.querySelector(".finish");
 const btnRestart = document.querySelector(".finish button");
 const questionEmotions = [];
@@ -36,11 +37,16 @@ Promise.all([
 ]).then(startVideo);
 
 function startVideo() {
-  navigator.getUserMedia(
-    { video: {} },
-    (stream) => (video.srcObject = stream),
-    (err) => console.error(err)
-  );
+  navigator.mediaDevices.getUserMedia(
+    { video: {} }
+  )
+  .then(stream => {
+    video.srcObject = stream;
+    warningDiv.style.display = "none";
+  })
+  .catch(err => {
+    console.error(err);
+  });
 }
 
 video.addEventListener("play", () => {
