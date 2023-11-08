@@ -7,7 +7,7 @@ import {
   ref,
 } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
 
-import { questionTimes, predominantEmotions, name } from "./script.js";
+import { questionTimes, predominantEmotions, name, userAnswers } from "./script.js";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -31,7 +31,7 @@ export function insertData() {
   var uid = crypto.randomUUID();
 
   set(ref(db, "results/" + uid), {
-    // questions: questions,
+    questions: userAnswers,
     name: name,
     times: questionTimes,
     emotions: predominantEmotions,

@@ -19,6 +19,7 @@ let questionsCorrect = 0;
 export let name = document.getElementById("name-input").value;
 export let questionTimes = [];
 export let predominantEmotions = [];
+export let userAnswers = [];
 document.getElementById("buttonName").onclick = startQuiz;
 
 const once =
@@ -117,6 +118,9 @@ function startQuiz() {
 function nextQuestion(e) {
   if (e.target.getAttribute("data-correct") === "true") {
     questionsCorrect++;
+    userAnswers.push(true);
+  } else {
+    userAnswers.push(false);
   }
 
   // Calculate and store the time spent on the current question
