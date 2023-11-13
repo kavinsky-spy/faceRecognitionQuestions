@@ -5,4 +5,4 @@ This project was created as academic lecture for detecting predominant emotions 
 
 ## Check out
 
-[Live Demo.](https://kavinsky-spy.github.io/faceRecognitionQuestions/)https://kavinsky-spy.github.io/faceRecognitionQuestions/
+[Live Demo.](https://kavinsky-spy.github.io/faceRecognitionQuestions/)
